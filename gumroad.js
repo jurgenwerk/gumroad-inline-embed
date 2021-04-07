@@ -12,6 +12,9 @@ const prepareGumroadWidget = () => {
 
   const iframe = document.createElement("iframe");
   iframe.setAttribute("id", "gumroad-widget");
+  iframe.style.top = 0;
+  iframe.style.right = 0;
+  iframe.style.position = "fixed";
   iframe.style.display = "none";
   iframe.width = 400;
   iframe.height = 800;
