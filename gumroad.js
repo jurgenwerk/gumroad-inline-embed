@@ -23,9 +23,14 @@ const prepareGumroadWidget = () => {
 };
 
 const addGumroadButtonHandlers = () => {
-  const gumroadLinks = Array.from(
-    document.getElementsByTagName("a")
-  ).filter((link) => GUMROAD_DOMAIN_PATTERNS.includes(link.hostname));
+  const gumroadLinks = Array.from(document.getElementsByTagName("a")).filter(
+    (link) => {
+      return (
+        link.dataset.gumroadEmbed !== "false" &&
+        GUMROAD_DOMAIN_PATTERNS.includes(link.hostname)
+      );
+    }
+  );
 
   gumroadLinks.forEach((link) => {
     // When a Gumroad link is clicked, embed it in the iFrame
