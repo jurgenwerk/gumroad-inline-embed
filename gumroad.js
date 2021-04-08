@@ -10,6 +10,7 @@ const prepareGumroadWidget = () => {
     return;
   }
 
+  // Create a hidden iframe which will be used to host the Gumroad embed
   const iframe = document.createElement("iframe");
   iframe.setAttribute("id", "gumroad-widget");
   iframe.style.top = 0;
@@ -27,6 +28,7 @@ const addGumroadButtonHandlers = () => {
   ).filter((link) => GUMROAD_DOMAIN_PATTERNS.includes(link.hostname));
 
   gumroadLinks.forEach((link) => {
+    // When a Gumroad link is clicked, embed it in the iFrame
     link.addEventListener("click", (event) => {
       event.preventDefault();
 
