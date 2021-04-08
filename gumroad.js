@@ -1,10 +1,5 @@
 const GUMROAD_DOMAIN_PATTERNS = ["gum.co", "gumroad.com"];
 
-document.addEventListener("DOMContentLoaded", () => {
-  prepareGumroadWidget();
-  addGumroadButtonHandlers();
-});
-
 const prepareGumroadWidget = () => {
   if (document.getElementById("gumroad-widget")) {
     return;
@@ -45,3 +40,17 @@ const addGumroadButtonHandlers = () => {
     });
   });
 };
+
+const initializeGumroadWidget = () => {
+  prepareGumroadWidget();
+  addGumroadButtonHandlers();
+};
+
+// Make this work for both sync and async scripts
+if (document.readyState == "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    initializeGumroadWidget();
+  });
+} else {
+  initializeGumroadWidget();
+}
