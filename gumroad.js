@@ -5,7 +5,7 @@ const prepareGumroadWidget = () => {
     return;
   }
 
-  // Create a hidden iframe which will be used to host the Gumroad embed
+  // Create a hidden iframe which will be used to host the Gumroad embed in the right sidebar
   const iframe = document.createElement("iframe");
   iframe.setAttribute("id", "gumroad-widget");
   iframe.style.top = 0;
@@ -17,7 +17,7 @@ const prepareGumroadWidget = () => {
   document.body.appendChild(iframe);
 };
 
-const addGumroadButtonHandlers = () => {
+const addGumroadLinkHandlers = () => {
   const gumroadLinks = Array.from(document.getElementsByTagName("a")).filter(
     (link) => {
       return (
@@ -28,7 +28,7 @@ const addGumroadButtonHandlers = () => {
   );
 
   gumroadLinks.forEach((link) => {
-    // When a Gumroad link is clicked, embed it in the iFrame
+    // When a Gumroad link is clicked, embed it in the iframe
     link.addEventListener("click", (event) => {
       event.preventDefault();
 
@@ -43,11 +43,11 @@ const addGumroadButtonHandlers = () => {
 
 const initializeGumroadWidget = () => {
   prepareGumroadWidget();
-  addGumroadButtonHandlers();
+  addGumroadLinkHandlers();
 };
 
 // Make this work for both sync and async scripts
-if (document.readyState == "loading") {
+if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     initializeGumroadWidget();
   });
